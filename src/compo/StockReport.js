@@ -31,24 +31,25 @@ function StockReport() {
           onChange={(e) => setSearchTerm(e.target.value)}
           sx={{ marginBottom: '20px', backgroundColor: '#fff', borderRadius: '4px' }}
         />
-        <TableContainer component={Paper} sx={{ borderRadius: '8px', overflow: 'hidden' }}>
-          <Table>
-            <TableHead sx={{ backgroundColor: '#1976d2' }}>
+        <TableContainer component={Paper} sx={{ borderRadius: '8px', overflowY: 'auto', maxHeight: '400px' }}>
+          <Table stickyHeader>
+            <TableHead>
               <TableRow>
-
-                <TableCell sx={{ color: '#fff', fontWeight: 'bold' }}>Product Name</TableCell>
-                <TableCell sx={{ color: '#fff', fontWeight: 'bold' }}>Quantity</TableCell>
-                <TableCell sx={{ color: '#fff', fontWeight: 'bold' }}>Consumer</TableCell>
-                <TableCell sx={{ color: '#fff', fontWeight: 'bold' }}>Pending</TableCell>
+                <TableCell sx={{ color: '#000', fontWeight: 'bold', width: 250 }}>Product Name</TableCell>
+                <TableCell sx={{ color: '#000', fontWeight: 'bold', width: 250 }}>Batch Number</TableCell>
+                <TableCell sx={{ color: '#000', fontWeight: 'bold', width: 250 }}>Quantity</TableCell>
+                <TableCell sx={{ color: '#000', fontWeight: 'bold', width: 250 }}>Consumer</TableCell>
+                <TableCell sx={{ color: '#000', fontWeight: 'bold', width: 250 }}>Pending</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {filteredProducts.map((product) => (
                 <TableRow key={product.id} sx={{ '&:nth-of-type(odd)': { backgroundColor: '#f5f5f5' } }}>
-                  <TableCell>{product.name}</TableCell>
-                  <TableCell>{product.quantity}</TableCell>
-                  <TableCell>{product.consumer}</TableCell>
-                  <TableCell>{product.quantity - product.consumer}</TableCell>
+                  <TableCell style={{ width: 250 }}>{product.name}</TableCell>
+                  <TableCell style={{ width: 250 }}>Batch {product.id}</TableCell>
+                  <TableCell style={{ width: 250 }}>{product.quantity}</TableCell>
+                  <TableCell style={{ width: 250 }}>{product.consumer}</TableCell>
+                  <TableCell style={{ width: 250 }}>{product.quantity - product.consumer}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

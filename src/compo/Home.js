@@ -15,10 +15,10 @@ function Home() {
         <Card sx={{ backgroundColor: '#fff', padding: '2px', textAlign: 'left', fontWeight: 'bold' }}>
           <CardContent>
             <Typography variant="h5" gutterBottom>
-              Welcome, Bhavesh
+              Welcome
             </Typography>
             <Typography variant="subtitle1" color="textSecondary">
-              Goregon
+              {localStorage.getItem('username')}
             </Typography>
           </CardContent>
         </Card>
@@ -28,7 +28,7 @@ function Home() {
         <Card sx={{ textAlign: 'center', cursor: 'pointer' }} onClick={() => navigate('/good-receiver')}>
           <CardContent>
             <Inventory sx={{ fontSize: 40, color: 'orange' }} />
-            <Typography variant="h6">Good Received</Typography>
+            <Typography variant="h6">Stock In</Typography>
           </CardContent>
         </Card>
         <Card sx={{ textAlign: 'center', cursor: 'pointer' }} onClick={() => navigate('/customer')}>

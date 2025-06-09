@@ -2,6 +2,9 @@ import React from 'react';
 import { TextField, Button, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import logo from './img/image.png';
+import axios from 'axios';
+import { Main_URL } from './Base_url';
+
 
 function Login() {
     const navigate = useNavigate();
@@ -32,11 +35,32 @@ function Login() {
             return;
         }
         // Handle login logic here
-        if (formdata.Username === 'Admin' && formdata.Password === '123456') {
-            navigate('/home'); // Redirect to home page on successful login
-        } else {
-            alert('Invalid credentials, please try again.');
-        }
+        axios.post(`${Main_URL}?login=1`, formdata)
+            .then((response) => {
+                // Handle successful login
+                const data  = response.data.data;
+                if(data.status == '0'){
+                    alert('Invalid credentials!');
+                }
+                const userid = data.user_id;
+                const name  = data.name;
+                const email  = data.email;
+                const address  = data.address;
+                const id = data.id;
+                localStorage.setItem('userid', userid);
+                localStorage.setItem('username', name);
+                localStorage.setItem('email', email);
+                localStorage.setItem('address', address);
+                localStorage.setItem('id', id);
+                // alert('Login successful!');
+                navigate('/home'); // Redirect to home page on successful login
+                // Optionally, you can redirect the user to another page after login
+
+            })
+            .catch((error) => {
+                // Handle login error
+                alert('Invalid credentials, please try again.');
+            });
 
     };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import  {React, useEffect } from 'react';
 import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import logo from '../img/image.png';
@@ -12,6 +12,13 @@ function Header() {
     console.log('Logo clicked, navigating to home');
 
   };
+
+  useEffect(() => {
+    const userId = localStorage.getItem('id');
+    if (!userId) {
+      navigate('/');
+    }
+  }, [navigate]);
 
   const location = window.location.pathname;
 
